@@ -1,0 +1,7 @@
+virtual/
+*.pyc
+start.sh
+__pycache__
+*.sh
+**/photos/**
+/instance
