@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+
+    {% for category in categories %}
+    <div class="list-group">
+        <a href="#!" class="list-group-item active">{{category}}</a> {{format_review|safe}} {% for pitch in pitches %} {% if pitch.category == category %}
+        <a href="{{url_for('main.pitch',id=pitch.id)}}" class="list-group-item"><i>{{pitch.pitch_title|safe}}</i><p></p>{{pitch.pitch_body|safe}}<p></p>{{pitch.posted_at}}
+                        {% if pitch.posted_by == None %}
+                <p></p><b>~~Anonymous</b></a> {% else %}
+        <p></p><b>~~{{pitch.posted_by|safe}}</b>
+        <a></a>
+        {% endif %} {% endif %} {% endfor %}
+    </div>
+    <hr> {% endfor %}
+
+
+</div>
+
+{% endblock %}
