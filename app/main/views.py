@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from ..models import User, Pitch, Comment
 from .forms import PitchForm, CommentForm, UpdateProfile
 from .. import db, photos
-import markdown2
+# import markdown2
 
 
 @main.route('/')
@@ -75,10 +75,10 @@ def new_pitch():
         pitch_title = form.title.data
         pitch_body = form.pitch.data
 
-        pitch_title = markdown2.markdown(
-            pitch_title, extras=["code-friendly", "fenced-code-blocks"])
-        pitch_body = markdown2.markdown(
-            pitch_body, extras=["code-friendly", "fenced-code-blocks"])
+        # pitch_title = markdown2.markdown(
+        #     pitch_title, extras=["code-friendly", "fenced-code-blocks"])
+        # pitch_body = markdown2.markdown(
+        #     pitch_body, extras=["code-friendly", "fenced-code-blocks"])
         new_pitch = Pitch(pitch_title=pitch_title, pitch_body=pitch_body, user=current_user,
                           category=form.category.data, posted_by=current_user.username)
         new_pitch.save_pitch()
@@ -100,10 +100,10 @@ def new_comment(id):
         title = form.title.data
         comment = form.comment.data
 
-        title = markdown2.markdown(
-            title, extras=["code-friendly", "fenced-code-blocks"])
-        comment = markdown2.markdown(
-            comment, extras=["code-friendly", "fenced-code-blocks"])
+        # title = markdown2.markdown(
+        #     title, extras=["code-friendly", "fenced-code-blocks"])
+        # comment = markdown2.markdown(
+        #     comment, extras=["code-friendly", "fenced-code-blocks"])
 
         new_comment = Comment(title=title, comment=comment, user=current_user,
                               user_pitch=pitch, posted_by=current_user.username)
