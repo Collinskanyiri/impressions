@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from ..models import User, Pitch, Comment
 from .forms import PitchForm, CommentForm, UpdateProfile
 from .. import db, photos
-# import markdown2
+import markdown2
 
 
 @main.route('/')
@@ -19,8 +19,8 @@ def index():
         'Promotional Pitch',
     ]
     pitches = Pitch.query.all()
-
     return render_template('index.html', title=title, pitches=pitches, categories=categories)
+
 
 
 @main.route('/user/<uname>')
@@ -44,8 +44,7 @@ def update_profile(uname):
     form = UpdateProfile()
     if form.validate_on_submit():
         user.bio = form.bio.data
-        # user.pitch_test = form.pitch.data
-
+        
         db.session.add(user)
         db.session.commit()
 
@@ -71,20 +70,20 @@ def update_pic(uname):
 def new_pitch():
     form = PitchForm()
     if form.validate_on_submit():
-        format_pitch = markdown2.markdown(pitch, extras=["code-friendly", "fenced-code-blocks"] )
+        # format_pitch = markdown2.markdown(pitch, extras=["code-friendly", "fenced-code-blocks"] )
         pitch_title = form.title.data
         pitch_body = form.pitch.data
 
-        # pitch_title = markdown2.markdown(
-        #     pitch_title, extras=["code-friendly", "fenced-code-blocks"])
-        # pitch_body = markdown2.markdown(
-        #     pitch_body, extras=["code-friendly", "fenced-code-blocks"])
+        pitch_title = markdown2.markdown(
+            pitch_title, extras=["code-friendly", "fenced-code-blocks"])
+        pitch_body = markdown2.markdown(
+            pitch_body, extras=["code-friendly", "fenced-code-blocks"])
         new_pitch = Pitch(pitch_title=pitch_title, pitch_body=pitch_body, user=current_user,
                           category=form.category.data, posted_by=current_user.username)
         new_pitch.save_pitch()
 
     title = "Pitch | New"
-    user_details = User.query.filter_by(username=current_user).first()
+    # user_details = User.query.filter_by(username=current_user).first()
     return render_template('pitch/new_pitch.html', title=title, pitch_form=form,)
 
 
@@ -92,18 +91,17 @@ def new_pitch():
 @login_required
 def new_comment(id):
     form = CommentForm()
-    # Pitch.query.filter_by(user_id=current_user.id).all()
+    
     pitch = Pitch.query.filter_by(id=id).first()
-    # if pitch is None:
-    #     abort(404)
+    
     if form.validate_on_submit():
         title = form.title.data
         comment = form.comment.data
 
-        # title = markdown2.markdown(
-        #     title, extras=["code-friendly", "fenced-code-blocks"])
-        # comment = markdown2.markdown(
-        #     comment, extras=["code-friendly", "fenced-code-blocks"])
+        title = markdown2.markdown(
+            title, extras=["code-friendly", "fenced-code-blocks"])
+        comment = markdown2.markdown(
+            comment, extras=["code-friendly", "fenced-code-blocks"])
 
         new_comment = Comment(title=title, comment=comment, user=current_user,
                               user_pitch=pitch, posted_by=current_user.username)
