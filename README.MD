@@ -2,17 +2,20 @@
 
 ## AUTHOR
 
-Collins Kanyiri (https://github.com/Collinskanyiri/)
+Collins Kanyiri (<https://github.com/Collinskanyiri/>)
 
 ## Description
+
 impressions is a web application that enables the users to submit their one minute pitches and other users can leave comments to give their feedback on them.
 
 The pitches are organized by category and users can view their pitches and comments made by other users
 
 ## Application Behaviour
+
 These are the behaviours/features that the application implements for use by a user.
 
 A user should be able to:
+
 * See the pitches other people have posted.
 * Sign in for them to leave a comment
 * Receive a welcoming email once they sign up.
@@ -21,48 +24,49 @@ A user should be able to:
 * Submit a pitch in any category.
 * View the different categories.
 
-
 ## SetUp / Installation Requirements
+
 ### Prerequisites
+
 python3.8
 pip3
-pipenv
+
 Git and Github
 
 ### Cloning
+
 In your terminal:
-        
-        $ git clone https://github.com/CheboiDerrick/pitch-app.git
-        $ cd pitch-app
+
+
+        git clone https://github.com/Collinskanyiri/impressions.git
+        cd impressions
 
 ## Running the Application
-Install the requirements:
 
-         $ pipenv install
+Install the requirements
+Start your virtual environment;
 
-Start your virtual environmrnt;
+Export your configurations
 
-        $ pipenv shell 
+        export SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://{User Name}:{password}@localhost/{database name}
 
-Export your configuraions
+        export SECRET_KEY='Your secret key'
 
-        $ export SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://{User Name}:{password}@localhost/{database name}
+        export MAIL_USERNAME='Your email username'
 
-        $ export SECRET_KEY='Your secret key'
-
-        $ export MAIL_USERNAME='Your email username'
-
-        $ export MAIL_PASSWORD='Your password'
+        export MAIL_PASSWORD='Your password'
 
 To run the application, in your terminal:
-        
-        $ python3.8 manage.py server
-    
 
-Open your browser and navigate to http://localhost:5000 to view the web app
+        export FLASK_APP=manage.py
+        export FLASK_ENV=development
+        chmod a+x start.sh
+        ./start.sh
 
-        
+Open your browser and navigate to <http://localhost:5000> to view the web app
+
 ## Technologies and Languages Used
+
 Python -(3.8)
 Flask
 
@@ -71,5 +75,5 @@ Flask
     Email:collinskanyiri@gmail.com 
 
 ## License
-MIT License Copyright (c) {2021} Collins Kanyiri
 
+MIT License Copyright (c) {2021} Collins Kanyiri
