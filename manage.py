@@ -5,7 +5,7 @@ from app.models import User, Pitch, Comment
 
 
 # create app instance
-app = create_app('config_name')
+app = create_app()
 
 
 
