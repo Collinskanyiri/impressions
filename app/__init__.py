@@ -19,13 +19,13 @@ login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 
 
-def create_app():
-
-
-    app = Flask(__name__)
+def create_app(config_name):
+    
+    app = Flask(__name__ ,instance_relative_config=True)
 
     # Creating the app configurations
-    app.config. from_object (Config)
+    app.config. from_object (config_options[config_name])
+
 
     # Initializing flask extensions
     bootstrap.init_app(app)
