@@ -7,8 +7,6 @@ from app.models import User, Pitch, Comment
 # create app instance
 app = create_app()
 
-
-
 manager = Manager(app)
 manager.add_command('server', Server)
 migrate = Migrate(app, db)
