@@ -99,10 +99,10 @@ def new_comment(id):
         title = form.title.data
         comment = form.comment.data
 
-        title = markdown2.markdown(
-            title, extras=["code-friendly", "fenced-code-blocks"])
-        comment = markdown2.markdown(
-            comment, extras=["code-friendly", "fenced-code-blocks"])
+        # title = markdown2.markdown(
+        #     title, extras=["code-friendly", "fenced-code-blocks"])
+        # comment = markdown2.markdown(
+        #     comment, extras=["code-friendly", "fenced-code-blocks"])
 
         new_comment = Comment(title=title, comment=comment, user=current_user,
                               user_pitch=pitch, posted_by=current_user.username)
