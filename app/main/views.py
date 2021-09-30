@@ -4,7 +4,8 @@ from flask_login import login_required, current_user
 from ..models import User, Pitch, Comment
 from .forms import PitchForm, CommentForm, UpdateProfile
 from .. import db, photos
-import markdown2
+from flask import markdown2
+
 
 
 @main.route('/')
