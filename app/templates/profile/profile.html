@@ -9,9 +9,7 @@
             <p> {{user.bio}} </p>
             {% else %}
             <p> {{user.username|capitalize}} has no bio </p>
-            {% endif %} {% if user == current_user %}
-            <a href="{{url_for('main.update_profile',uname=user.username)}}">Update profile</a> {% endif %}
-        </div>
+            {% endif %}</div>
         <!--Display profile photo-->
         <div class="col-md-4">
             {% if user.profile_pic_path %}
@@ -20,7 +18,8 @@
             <p>No profile picture</p>
 
             {% endif %} {% if user == current_user %}
-            <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+
+            <href href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</href>
             <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype="multipart/form-data">
 
                 <input type="file" name="photo" class="form-control" required>
@@ -28,9 +27,7 @@
             </form>
             {% endif %}
         </div>
-        <div class="col-md-4">
-            <a href="{{url_for('main.update_profile', uname=user.username)}}">Edit profile</a>
-        </div>
+
 
     </div>
     <div class="row">
